@@ -68,7 +68,7 @@ function MainApp({ currentUserId, setCurrentUserId }: MainAppProps) {
         <h1 className="brand">SipSave</h1>
         <div className="tagline-container">
           <p className="tagline-en">Save while you sip</p>
-          <p className="tagline-cn">每一口都是一份储蓄</p>
+          <p className="tagline-cn">每嘬一口都是一份储蓄</p>
         </div>
         <div className="savings-display">
           <div className="savings-info">
