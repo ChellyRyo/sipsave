@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import './App.css'
 import History from './components/History'
 import UserSelect from './components/UserSelect'
+import { saveCheckInRecords, getCheckInRecords } from './api'
 
 interface CheckInRecord {
   date: string
@@ -24,16 +25,11 @@ function MainApp({ currentUserId, setCurrentUserId }: MainAppProps) {
 
   useEffect(() => {
     if (selectedUserId) {
-      const savedRecords = localStorage.getItem(`checkInRecords_${selectedUserId}`)
-      if (savedRecords) {
-        const records = JSON.parse(savedRecords)
+      // 从API获取数据
+      getCheckInRecords(selectedUserId).then(records => {
         setCheckInRecords(records)
         updateStatistics(records)
-      } else {
-        setCheckInRecords([])
-        setTotalSavings(0)
-        setTotalCups(0)
-      }
+      })
     }
   }, [selectedUserId])
 
@@ -43,7 +39,7 @@ function MainApp({ currentUserId, setCurrentUserId }: MainAppProps) {
     setTotalCups(records.length)
   }
 
-  const handleCheckIn = () => {
+  const handleCheckIn = async () => {
     if (!selectedUserId) {
       alert('请先选择用户')
       return
@@ -55,9 +51,9 @@ function MainApp({ currentUserId, setCurrentUserId }: MainAppProps) {
     const newRecord = { date: dateStr, time: timeStr, amount }
     const updatedRecords = [...checkInRecords, newRecord]
 
-    // 更新数据
+    // 更新数据到API
+    await saveCheckInRecords(selectedUserId, updatedRecords)
     setCheckInRecords(updatedRecords)
-    localStorage.setItem(`checkInRecords_${selectedUserId}`, JSON.stringify(updatedRecords))
     updateStatistics(updatedRecords)
   }
 

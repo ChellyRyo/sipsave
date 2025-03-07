@@ -8,13 +8,67 @@
 
 /* 全局样式 */
 .app-container {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 100%;
+  padding: 15px;
+  margin: 0;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.brand {
+  font-size: 28px;
+}
+
+.tagline-en {
+  font-size: 18px;
+}
+
+.tagline-cn {
+  font-size: 16px;
+}
+
+.savings-display {
+  margin-top: 20px;
   padding: 20px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
+}
+
+.amount {
+  font-size: 36px;
+}
+
+.currency {
+  font-size: 20px;
+}
+
+.check-in-button {
+  width: 120px;
+  height: 120px;
+  font-size: 18px;
+}
+
+.check-in-icon {
+  font-size: 32px;
+}
+
+.check-in-text {
+  font-size: 15px;
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding: 1rem;
+  }
+  
+  .main-content {
+    margin: 20px 0;
+  }
+  
+  .history-button {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
 }
 
 /* 头部样式 */
