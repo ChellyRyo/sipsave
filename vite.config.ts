@@ -10,6 +10,7 @@ export default defineConfig({
         target: 'https://sipsave-worker.wangdongming-sh.workers.dev',
         changeOrigin: true,
         secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
