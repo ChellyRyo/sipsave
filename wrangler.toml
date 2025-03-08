@@ -4,5 +4,5 @@ compatibility_date = "2024-01-01"
 
 [[kv_namespaces]]
 binding = "SIPSAVE_KV"
-id = "d8f5e1c3b2a0-4321-9876-543210fedcba"
+id = "fd120d6865cc4291af2ff78e1d3ce9b5"
 preview_id = "98765432-1fed-cba0-9876-543210fedcba"
