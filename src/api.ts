@@ -4,7 +4,7 @@ interface CheckInRecord {
   amount: number
 }
 
-const API_BASE_URL = 'https://api.chelly.site'
+const API_BASE_URL = 'https://sipsave-worker.workers.dev'
 
 export async function saveCheckInRecords(userId: string, records: CheckInRecord[]): Promise<void> {
   try {
@@ -19,6 +19,9 @@ export async function saveCheckInRecords(userId: string, records: CheckInRecord[
     if (!response.ok) {
       throw new Error('Failed to save records')
     }
+
+    // 同步成功后，更新本地缓存
+    localStorage.setItem(`checkInRecords_${userId}`, JSON.stringify(records))
   } catch (error) {
     console.error('Error saving records:', error)
     // 如果API调用失败，回退到localStorage
@@ -34,7 +37,10 @@ export async function getCheckInRecords(userId: string): Promise<CheckInRecord[]
       throw new Error('Failed to fetch records')
     }
     
-    return await response.json()
+    const records = await response.json()
+    // 同步成功后，更新本地缓存
+    localStorage.setItem(`checkInRecords_${userId}`, JSON.stringify(records))
+    return records
   } catch (error) {
     console.error('Error fetching records:', error)
     // 如果API调用失败，从localStorage获取数据
