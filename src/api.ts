@@ -4,7 +4,7 @@ interface CheckInRecord {
   amount: number
 }
 
-const API_BASE_URL = 'https://sipsave-worker.workers.dev'
+const API_BASE_URL = '/api'
 
 export async function saveCheckInRecords(userId: string, records: CheckInRecord[]): Promise<void> {
   try {
